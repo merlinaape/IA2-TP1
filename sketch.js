@@ -1,7 +1,7 @@
 let textura;
 let figuras = [];
 let indiceFiguras = 0;
-let maxFiguras = 20;
+let maxFiguras = 25;
 let cantFiguras = 0;
 let bandera = false;
 
@@ -30,10 +30,11 @@ function mouseClicked() {
   }
 
   if (indiceFiguras < maxFiguras) {
-    let posY = random((-height / 2) + 100, (height / 2) - 150);
+    let posY = random((-height / 2) + 80, (height / 2) - 80);
     let radio = random(20, 200);
     let rotacion = Math.round(random());;
-    figuras[indiceFiguras] = new Figura(posY, radio, rotacion);
+    let esEntero = Math.round(random());;
+    figuras[indiceFiguras] = new Figura(posY, radio, rotacion, esEntero);
     indiceFiguras++;
   }
 
