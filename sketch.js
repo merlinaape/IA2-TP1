@@ -1,4 +1,5 @@
 let textura;
+let texturaFigura;
 let figuras = [];
 let indiceFiguras = 0;
 let maxFiguras = 30; // cantidad max de figuras
@@ -20,7 +21,7 @@ function draw() {
   push();
   // blendMode(MULTIPLY); //modo de fusion lienzo y figuras
   tint(255, 100); // color de lienzo
-  image(textura, -width, -height); //imagen lienzo
+  image(textura, -width, -height, width * 2, height * 2); //imagen lienzo
   pop();
 
   for (let i = 0; i < figuras.length; i++) {//leer array
@@ -30,6 +31,10 @@ function draw() {
     figuraActual.show(); // mostrar figura actual en proceso
   }
 
+  push();
+  // image(texturaFigura, -width, -height, width * 2, height * 2); //imagen lienzo
+  
+  pop();
 }
 
 rightClick(); // Desactiva el click derecho

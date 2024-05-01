@@ -1,5 +1,6 @@
 function preload() {
-  textura = loadImage("img/canvas_texture.jpg"); // Textura de fondo
+  textura = loadImage("img/textures/canvas_texture.jpg"); // Textura de fondo
+  texturaFigura = loadImage("img/textures/figura_texture.jpg"); // Textura de figura
   imgPaleta = loadImage("img/sonia1.jpg"); // Referencia de paleta (Cambiar para otra paleta)
 }
 
@@ -16,11 +17,13 @@ function mousePressed() {
     let rotacion = Math.round(random());
     let esEntero = 0;
     let colorFigura = [];
-    for (let i = 0; i < 3; i++) {
+    let cantFiguras = int(random(6) + 2);
+    for (let i = 0; i < cantFiguras; i++) {
       colorFigura.push(paleta.darColor());
     }
-    figuraActual = new Figura(posY, radio, rotacion, colorFigura); // Crea una nueva figura
+    figuraActual = new Figura(posY, radio, rotacion, colorFigura, cantFiguras); // Crea una nueva figura
     indiceFiguras++; // Suma a la cuenta de figuras dibujadas hasta el momento
+
   }
 }
 
