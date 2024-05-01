@@ -5,9 +5,12 @@ let maxFiguras = 30; // cantidad max de figuras
 let cantFiguras = 0;
 let bandera = false; //detecta mouse
 let figuraActual = null; // figura actual
+let imgPaleta;
+let paleta;
 
 function setup() {
   createCanvas(windowHeight / 1.5, windowHeight - 50);
+  paleta = new Paleta(imgPaleta);
 }
 
 function draw() {
@@ -26,6 +29,8 @@ function draw() {
   tint(255, 100); // color de lienzo
   image(textura, 0, 0); //imagen lienzo
   pop();
+
+  paleta.show(0, 0);
 }
 
 function mousePressed() {
