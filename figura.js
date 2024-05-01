@@ -1,19 +1,19 @@
 class Figura {
-  constructor(y, rad, rot, ent) {
+  constructor(y, rad, rot, ent, col) {
     // creo constructor
     this.y = y;
     this.rad = rad;
     this.rot = rot;
     this.ent = ent;
-
+    this.col = col;
     // tipo de arco
     this.tipo = random() < 0.5 ? "circulo" : "semicirculo";
     
     // colores arcos random entre unos tonos
-    this.colors = [];
-    for (let i = 0; i < 3; i++) {
-      this.colors.push(color(random(150, 255), random(10, 255), random(150, 255)));
-    }
+    // this.colors = [];
+    // for (let i = 0; i < 3; i++) {
+    //   this.colors.push(color(random(150, 255), random(10, 255), random(150, 255)));
+    // }
   }
 
   show() {
@@ -29,18 +29,18 @@ class Figura {
     }
 
     // creo figuras
-    fill(this.colors); // color
+    // fill(this.colors); // color
     if (this.tipo === "circulo") {
       // si dibuja circulo "TWO_PI"
       for (let i = 0; i < 3; i++) {
-        fill(this.colors[i]); //color aleatorio a cada arco
+        fill(this.col); //color aleatorio a cada arco
         let radius = this.rad * (1 - i * 0.1); // radio menor para cada círculo
         arc(this.y, 0, radius, radius, 0, TWO_PI); //circulo
       }
     } else {
       // si dibuja semicirculo "PI"
       for (let i = 0; i < 3; i++) {
-        fill(this.colors[i]); // color aleatorio a cada arco 
+        fill(this.col); // color aleatorio a cada arco 
         let radius = this.rad * (1 - i * 0.8); // radio menor para cada semicírculo
         arc(this.y, 0, radius, radius, 0, PI); //semicirculo
       }

@@ -30,7 +30,7 @@ function draw() {
   image(textura, 0, 0); //imagen lienzo
   pop();
 
-  paleta.show(0, 0);
+  // paleta.show(0, 0);
 }
 
 function mousePressed() {
@@ -45,7 +45,8 @@ function mousePressed() {
     let radio = 0; // radio inicial
     let rotacion = Math.round(random());
     let esEntero = 0;
-    figuraActual = new Figura(posY, radio, rotacion, esEntero); // crea una nueva figura
+    let colorFigura = paleta.darColor();
+    figuraActual = new Figura(posY, radio, rotacion, esEntero, colorFigura); // crea una nueva figura
     indiceFiguras++; //agrega otra figura
   }
 }
