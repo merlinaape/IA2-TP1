@@ -45,7 +45,10 @@ function mousePressed() {
     let radio = 0; // radio inicial
     let rotacion = Math.round(random());
     let esEntero = 0;
-    let colorFigura = paleta.darColor();
+    let colorFigura = [];
+    for (let i = 0; i < 3; i++) {
+      colorFigura.push(paleta.darColor());
+    }
     figuraActual = new Figura(posY, radio, rotacion, esEntero, colorFigura); // crea una nueva figura
     indiceFiguras++; //agrega otra figura
   }
