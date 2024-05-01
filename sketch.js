@@ -8,10 +8,13 @@ let bandera = false; //detecta mouse
 let figuraActual = null; // figura actual
 let imgPaleta;
 let paleta;
+let radInicial = 30;
+let radMax = 200;
 
 function setup() {
   createCanvas(windowHeight / 1.5, windowHeight, WEBGL);
   paleta = new Paleta(imgPaleta);
+  Figura.estado = "inicial"; // Estado inicial por defecto
 }
 
 function draw() {

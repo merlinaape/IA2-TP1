@@ -8,6 +8,7 @@ class Figura {
     this.cant = cant;
     // tipo de arco
     this.tipo = random() < 0.5 ? "circulo" : "semicirculo";
+    // this.estado = "inicial";
     // console.log(this.cantFiguras);
   }
 
@@ -23,12 +24,16 @@ class Figura {
       rotate(radians(270)); // izquierda
     }
 
+    if(this.estado === "inicial"){
+      
+    }
+    
     // creo figuras
     if (this.tipo === "circulo") {
       // si dibuja circulo "TWO_PI"
       for (let i = 0; i < this.cant; i++) {
         fill(this.col[i]); // color sacado de la clase Paleta
-        let radius = this.rad * (this.cant / i * 0.4); // radio menor para cada círculo
+        let radius = this.rad * (this.cant / i * 0.4); // radio menor para cada círculo segun la cantidad de figuras
         arc(this.y, 0, radius, radius, 0, TWO_PI, PIE, 100); //circulo  
 
         // Misma figura pero con textura 
@@ -44,7 +49,7 @@ class Figura {
       // si dibuja semicirculo "PI"
       for (let i = 0; i < this.cant; i++) {
         fill(this.col[i]); // Color sacado de la clase Paleta
-        let radius = this.rad * (this.cant / i * 0.5); // radio menor para cada semicírculo
+        let radius = this.rad * (this.cant / i * 0.5); // radio menor para cada semicírculo segun la cantidad de figuras
         arc(this.y, 0, radius, radius, 0, PI, OPEN, 100); // Semicirculo
 
         // Misma figura pero con textura 
