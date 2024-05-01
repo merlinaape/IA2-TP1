@@ -15,9 +15,9 @@ function mousePressed() {
     let posY = random(-height / 2 + 90, height / 2 - 90); // no superan margen del lienzo
     let radio = 0; // radio inicial
     let rotacion = Math.round(random());
-    let esEntero = 0;
+    // let esEntero = 0;
     let colorFigura = [];
-    let cantFiguras = int(random(6) + 2);
+    let cantFiguras = int(random(6) + 3);
     for (let i = 0; i < cantFiguras; i++) {
       colorFigura.push(paleta.darColor());
     }
@@ -32,9 +32,9 @@ function mouseDragged() {
     let nuevoRadio = dist(mouseX, mouseY, figuraActual.y, width / 2); // dist del mouse con centro de la fig 
     // tamaño de figura según la cantidad de figuras
     if (cantFiguras < 10) { // grandes menores a 10 fig
-      figuraActual.rad = constrain(nuevoRadio, 300, 550); // modif radio c/mouse entre 300 y 550 
+      figuraActual.rad = constrain(nuevoRadio, 100, 350); // modif radio c/mouse entre 300 y 550 
     } else if (cantFiguras >= 10 && cantFiguras < 25) { // medianas entre 10 y 25 fig
-      figuraActual.rad = constrain(nuevoRadio, 140, 240); //modif radio c/mouse entre 140 y 240 
+      figuraActual.rad = constrain(nuevoRadio, 40, 140); //modif radio c/mouse entre 140 y 240 
     } else if (cantFiguras >= 25) { // pequeñas mayores a 25 fig
       figuraActual.rad = constrain(nuevoRadio, 20, 100); //modif radio c/mouse entre 20 y 100 
     }
