@@ -1,77 +1,55 @@
 class Figura {
-  constructor(y, rad, rot, col, cant) {
-    // creo constructor
-    this.y = y;
-    this.rad = rad; // Radio
-    this.rot = rot; // Rotacion
-    this.col = col; // Array de colores sacado de clase Paleta
-    this.cant = cant;
-    // tipo de arco
-    this.tipo = random() < 0.5 ? "circulo" : "semicirculo";
-    // this.estado = "inicial";
-    // console.log(this.cantFiguras);
-  }
+  constructor(x, y, rad, rot, col, cant) {
+    this.x= x;
+    this.y = y; // Posición Y de la figura
+    this.radio = rad; // Radio inicial de la figura
+    this.rot = rot; // Rotación de la figura (0 o 1)
+    this.col = col; // Array de colores para la figura
+    this.cant = cant; // Cantidad de subfiguras que componen la figura
+    this.tipo = random() < 0.5 ? "circulo" : "semicirculo"; // Tipo de figura (círculo o semicírculo)
+    this.estado = 'fijo'; // Estado inicial de la figura
+    this.rotacionSeleccionada = Math.random() < 0.5 ? 90 : 270;
+ }
 
-  show() {
-    push();
+ show() {
+   push();
+   
+   // Aplica la rotación a la figura
+   rotate(radians(this.rotacionSeleccionada)); // Aplica la rotación seleccionada
 
-    // translate(width / 2, height / 2); // division central de lienzo
-
-    // rotaciones
-    if (this.rot == 0) {
-      rotate(radians(90)); // derecha
-    } else {
-      rotate(radians(270)); // izquierda
+    // Si la figura está en estado creciente, incrementa el radio
+    if (this.estado === 'creciente') {
+      this.radio += 3; // Ajusta el incremento (2) para aumentar la velocidad de crecimiento
     }
 
-    if (this.estado === "inicial") {
-      if (cantFiguras < 10) {
-        // grandes menores a 10 fig
-        figuraActual.rad = random((100, 350)); // modif radio
-      }
-    } else if (Figura.estado === "intermedio") {
-      if (cantFiguras >= 10 && cantFiguras < 25) {
-        // medianas entre 10 y 25 fig
-        figuraActual.rad = random((40, 140)); //modif radio
-      }
-    } else if (Figura.estado === "final") {
-      if (cantFiguras >= 25) {
-        // pequeñas mayores a 25 fig
-        figuraActual.rad = random((20, 100)); //modif radio
-      }
-    }
-
-    // creo figuras
+    // Dibuja la figura
     if (this.tipo === "circulo") {
-      // si dibuja circulo "TWO_PI"
+      // Si es un círculo
       for (let i = 0; i < this.cant; i++) {
-        fill(this.col[i]); // color sacado de la clase Paleta
-        let radius = this.rad * ((this.cant / i) * 0.3); // radio menor para cada círculo segun la cantidad de figuras
-        arc(this.y, 0, radius, radius, 0, TWO_PI, PIE, 100); //circulo
+        fill(this.col[i]); // Asigna el color
+        let radius = this.radio * ((this.cant / (i + 3)) * 0.8); // Calcula el radio del subcírculo
+        arc(this.y, 0, radius, radius, 0, TWO_PI, PIE, 70); // Dibuja el subcírculo
 
-        // Misma figura pero con textura
+        
+        // Dibuja el subcírculo con textura
         push();
-        blendMode(DARKEST); // SIRVEN OVERLAY, DARKEST, BURN
-        tint(255, 200);
-        texture(texturaFigura);
-        arc(this.y, 0, radius, radius, 0, TWO_PI, PIE, 100); //circulo
-
+        tint(255, 100); // Aplica transparencia
+       texture(texturaFigura); // Asigna la textura
+       arc(this.y, 0, radius, radius, 0, TWO_PI, PIE, 70); // Dibuja el subcírculo con textura
         pop();
       }
     } else {
-      // si dibuja semicirculo "PI"
+      // Si es un semicírculo
       for (let i = 0; i < this.cant; i++) {
-        fill(this.col[i]); // Color sacado de la clase Paleta
-        let radius = this.rad * ((this.cant / i) * 0.5); // radio menor para cada semicírculo segun la cantidad de figuras
-        arc(this.y, 0, radius, radius, 0, PI, OPEN, 100); // Semicirculo
+        fill(this.col[i]); // Asigna el color
+        let radius = this.radio * ((this.cant / (i + 5)) * 0.6 ); // Calcula el radio del subsemicírculo
+        arc(this.y, 0, radius, radius, 0, PI, OPEN, 70); // Dibuja el subsemicírculo
 
-        // Misma figura pero con textura
+        // Dibuja el subsemicírculo con textura
         push();
-        blendMode(OVERLAY);
-        tint(255, 200);
-        texture(texturaFigura);
-        arc(this.y, 0, radius, radius, 0, PI, OPEN, 100); // Semicirculo
-
+         tint(255, 100); // Aplica transparencia
+         texture(texturaFigura); // Asigna la textura
+         arc(this.y, 0, radius, radius, 0, PI, OPEN, 70); // Dibuja el subsemicírculo con textura
         pop();
       }
     }

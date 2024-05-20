@@ -1,43 +1,44 @@
-let textura;
-let texturaFigura;
-let figuras = [];
-let indiceFiguras = 0;
-let maxFiguras = 30; // cantidad max de figuras
-let cantFiguras = 0;
-let bandera = false; //detecta mouse
-let figuraActual = null; // figura actual
-let imgPaleta;
-let paleta;
-let radInicial = 30;
-let radMax = 200;
+let textura; // Variable para la textura de fondo
+let texturaFigura; // Variable para la textura de las figuras
+let figuras = []; // Array que almacena todas las figuras fijas
+let indiceFiguras = 0; // Contador del número de figuras creadas
+let maxFiguras = 20; // Cantidad máxima de figuras permitidas
+let figuraActual = null; // Referencia a la figura que está en crecimiento
+let imgPaleta; // Imagen para la paleta de colores
+let paleta; // Objeto de la clase Paleta
+let radInicial = 30; // Radio inicial de las figuras
+let radMax = 500; // Radio máximo de las figuras
+let posicionesY = []; // Array para almacenar las posiciones Y ocupadas
+
 
 function setup() {
-  createCanvas(windowHeight / 1.5, windowHeight, WEBGL);
-  paleta = new Paleta(imgPaleta);
-  Figura.estado = "inicial"; // Estado inicial por defecto
+  createCanvas(windowHeight / 1.5, windowHeight, WEBGL); // Crea el lienzo
+  paleta = new Paleta(imgPaleta); // Inicializa la paleta de colores
 }
 
 function draw() {
-  background(200);
-  noStroke();
-
+  background(220, 200, 180);
+  noStroke(); 
+  
+  // Dibujar textura de fondo con transparencia
   push();
-  //blendMode(MULTIPLY); //modo de fusion lienzo y figuras
-  tint(255, 100); // color de lienzo
-  image(textura, -width, -height, width * 2, height * 2); //imagen lienzo
+  tint(255, 150); // Transparencia del lienzo
+  image(textura, -width / 2, -height / 2, width, height); // Imagen de fondo
   pop();
 
+  // Mostrar todas las figuras fijas del array
   for (let i = 0; i < figuras.length; i++) {
-    //leer array
-    figuras[i].show(); //mostrar las figuras
+    figuras[i].show();
   }
+
+  // Mostrar la figura actual en proceso de crecimiento
   if (figuraActual) {
-    figuraActual.show(); // mostrar figura actual en proceso
+    figuraActual.show();
+    // Si la figura actual alcanza el radio máximo, se fija
+    if (figuraActual.radio >= radMax) {
+      fijarFiguraActual();
+    }
   }
-
-  push();
-
-  pop();
 }
 
 rightClick(); // Desactiva el click derecho
