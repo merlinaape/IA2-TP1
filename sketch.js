@@ -1,15 +1,13 @@
 let textura; // Variable para la textura de fondo
 let texturaFigura; // Variable para la textura de las figuras
 let figuras = []; // Array que almacena todas las figuras fijas
-let indiceFiguras = 0; // Contador del número de figuras creadas
-let maxFiguras = 20; // Cantidad máxima de figuras permitidas
+let indiceFiguras = Figura.count; // Contador del número de figuras creadas
+let maxFiguras = 40; // Cantidad máxima de figuras permitidas
 let figuraActual = null; // Referencia a la figura que está en crecimiento
 let imgPaleta; // Imagen para la paleta de colores
 let paleta; // Objeto de la clase Paleta
 let radInicial = 30; // Radio inicial de las figuras
 let radMax = 500; // Radio máximo de las figuras
-let posicionesY = []; // Array para almacenar las posiciones Y ocupadas
-
 
 function setup() {
   createCanvas(windowHeight / 1.5, windowHeight, WEBGL); // Crea el lienzo
@@ -18,8 +16,8 @@ function setup() {
 
 function draw() {
   background(220, 200, 180);
-  noStroke(); 
-  
+  noStroke();
+
   // Dibujar textura de fondo con transparencia
   push();
   tint(255, 150); // Transparencia del lienzo
